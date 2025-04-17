@@ -27,27 +27,34 @@ export default function MyTickets() {
   useEffect(() => {
     const fetchTickets = async () => {
       if (!contract || !account) return;
-
       setLoading(true);
+
       try {
         const balance = await contract.balanceOf(account);
-        const ownedTickets: TicketData[] = [];
+        const ticketIds = await Promise.all(
+          Array.from({ length: Number(balance) }).map((_, i) =>
+            contract.tokenOfOwnerByIndex(account, i)
+          )
+        );
 
-        for (let i = 0n; i < balance; i++) {
-          const ticketId = await contract.tokenOfOwnerByIndex(account, i);
-          const eventId = await contract.ticketToEvent(ticketId);
-          const eventData = await contract.events(eventId);
-          const checkedInAt = await contract.getCheckInTimestamp(ticketId);
+        const ticketData = await Promise.all(
+          ticketIds.map(async (ticketId) => {
+            const [eventId, checkedInAt] = await Promise.all([
+              contract.ticketToEvent(ticketId),
+              contract.getCheckInTimestamp(ticketId),
+            ]);
+            const eventData = await contract.events(eventId);
 
-          ownedTickets.push({
-            ticketId: Number(ticketId),
-            eventId: Number(eventId),
-            eventName: eventData.name,
-            checkedInAt: Number(checkedInAt),
-          });
-        }
+            return {
+              ticketId: Number(ticketId),
+              eventId: Number(eventId),
+              eventName: eventData.name,
+              checkedInAt: Number(checkedInAt),
+            };
+          })
+        );
 
-        setTickets(ownedTickets);
+        setTickets(ticketData);
       } catch (err) {
         console.error("票券查詢失敗", err);
       } finally {

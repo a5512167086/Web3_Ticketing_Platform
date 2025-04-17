@@ -9,8 +9,13 @@ export default function Header() {
   return (
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography variant="h6" component="div">
-          🪙 Web3 DApp
+        <Typography
+          variant="h6"
+          component="div"
+          onClick={() => navigate("/")}
+          sx={{ cursor: "pointer" }}
+        >
+          Event Ticketing System
         </Typography>
 
         <Box display="flex" alignItems="center" gap={2}>

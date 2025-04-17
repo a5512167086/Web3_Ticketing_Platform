@@ -4,22 +4,27 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#000", // 主色為黑
-      contrastText: "#fff", // 白色文字
+      main: "#1976d2", // Modern blue
     },
     secondary: {
-      main: "#888", // 次色灰階
+      main: "#ff9800", // Accent orange
     },
     background: {
-      default: "#111", // 背景更深一點
-      paper: "#1a1a1a", // 卡片或 app bar 背景
+      default: "#f5f5f5", // Light gray for page background
+      paper: "#ffffff", // White for main card content
     },
     text: {
-      primary: "#fff",
-      secondary: "#ccc",
+      primary: "#212121", // Almost black
+      secondary: "#616161", // Gray
     },
     error: {
-      main: "#ff4c4c",
+      main: "#e53935",
+    },
+  },
+  typography: {
+    fontFamily: "'Inter', 'Helvetica', 'Arial', sans-serif",
+    h4: {
+      fontWeight: 600,
     },
   },
   components: {
@@ -27,20 +32,25 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          borderRadius: 6,
+          borderRadius: 8,
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#000", // AppBar 強制黑底
+          backgroundColor: "#ffffff",
+          color: "#212121",
         },
       },
     },
-  },
-  typography: {
-    fontFamily: "'Inter', 'Helvetica', 'Arial', sans-serif",
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
   },
 });
 
