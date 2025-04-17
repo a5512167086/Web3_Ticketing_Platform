@@ -4,9 +4,19 @@ export default function Footer() {
   return (
     <Box
       component="footer"
-      sx={{ textAlign: "center", py: 2, bgcolor: "grey.100" }}
+      sx={{
+        py: 3,
+        px: 2,
+        mt: "auto",
+        textAlign: "center",
+        backgroundColor: (theme) => theme.palette.background.paper,
+        color: (theme) => theme.palette.text.secondary,
+        borderTop: "1px solid rgba(255,255,255,0.1)",
+      }}
     >
-      <Typography variant="body2">© 2025 EventPass NFT Ticketing</Typography>
+      <Typography variant="body2">
+        © {new Date().getFullYear()} Web3 DApp — All Rights Reserved.
+      </Typography>
     </Box>
   );
 }

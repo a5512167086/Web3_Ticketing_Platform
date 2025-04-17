@@ -2,24 +2,24 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
-      main: "#333", // 比 #222 淺一點點，視覺更舒服
-      contrastText: "#fff",
+      main: "#000", // 主色為黑
+      contrastText: "#fff", // 白色文字
     },
     secondary: {
-      main: "#888",
+      main: "#888", // 次色灰階
     },
     background: {
-      default: "#f5f5f5",
-      paper: "#fff",
+      default: "#111", // 背景更深一點
+      paper: "#1a1a1a", // 卡片或 app bar 背景
     },
     text: {
-      primary: "#111",
-      secondary: "#555",
+      primary: "#fff",
+      secondary: "#ccc",
     },
     error: {
-      main: "#d32f2f",
+      main: "#ff4c4c",
     },
   },
   components: {
@@ -34,7 +34,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#000",
+          backgroundColor: "#000", // AppBar 強制黑底
         },
       },
     },
